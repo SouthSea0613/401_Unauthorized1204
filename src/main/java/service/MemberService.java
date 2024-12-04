@@ -3,7 +3,6 @@ package service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.JdbcUtil;
 import dao.MemberDao;
 import dto.Member;
 
