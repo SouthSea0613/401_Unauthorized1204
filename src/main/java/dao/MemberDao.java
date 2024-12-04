@@ -9,14 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
 
-public class MemberDao {
-	Connection connection;
-	PreparedStatement preparedStatement;
-	ResultSet resultSet;
+//회원관리 DB 서비스
+public class MemberDao { 
+	Connection con;
+	PreparedStatement stmt;
+	ResultSet rs;
 	HttpServletRequest req;
 	
 	public void connect() {
-		connection = JdbcUtill.connect();
+		con =JdbcUtill.connect();
+
 	}
 	
 	public void setRequest(HttpServletRequest req) {
@@ -24,34 +26,34 @@ public class MemberDao {
 	}
 	
 	public void close() {
-		JdbcUtill.close(connection);
-		JdbcUtill.close(preparedStatement);
-		JdbcUtill.close(resultSet);
+		JdbcUtill.close(rs);
+		JdbcUtill.close(con);
+		JdbcUtill.close(stmt);
 	}
-	
 	public boolean join(Member member) {
+		String sql = "INSERT INTO MEMBER (USERNAME, USERPW, IRUM, GENDER) VALUES(?,?,?,?)";
 		try {
-			preparedStatement = connection.prepareStatement("INSERT INTO MEMBER VALUES(?, ?, ?, ?)");
-			
-			preparedStatement.setString(1, member.getUsername());
-			preparedStatement.setString(2, member.getUserPW());
-			preparedStatement.setString(3, member.getName());
-			preparedStatement.setString(4, member.getGender());
-			
-			int result = preparedStatement.executeUpdate();
-			if (result != 0) {
-				System.out.printf("join 성공");
-				JdbcUtill.commit(connection);
-				req.setAttribute("name", member.getName());
+			stmt = con.prepareStatement(sql);  //파싱
+			stmt.setString(1, member.getUsername());
+			stmt.setString(2, member.getUserpw());
+			stmt.setString(3, member.getIrum());
+			stmt.setString(4, member.getGender());
+			int result = stmt.executeUpdate(); // insert, update, delete
+			if(result>0) {
+				System.out.println("join Dao 성공");
+				JdbcUtill.commit(con);
+				req.setAttribute("name", member.getIrum());
 				return true;
-			}
-			else {
-				System.out.printf("join 실패");
+			}else {
+				System.out.println("join Dao 실패");
+
 				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+
 		}
+		return false;
+
 	}
 }
