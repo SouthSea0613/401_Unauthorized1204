@@ -41,10 +41,7 @@ public class MemberService {
 		}else {
 			return "joinfrm.jsp";
 		}
-		
 	}
-
-
 	public String login() {
 		return null;
 	}
