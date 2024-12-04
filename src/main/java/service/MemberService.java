@@ -29,6 +29,7 @@ public class MemberService {
 		memberDao.connect();
 		memberDao.setRequest(req);
 		boolean result = memberDao.join(member);
+		memberDao.close();
 		if(result) {
 			return "loginform.jsp";
 		}

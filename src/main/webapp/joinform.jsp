@@ -11,7 +11,7 @@
 
 	<body>
 		<h1>joinform.jps - 회원가입 양식</h1>
-		<form action="./join" method="post">
+		<form action="./join" method="get">
 			아이디 : <input type="text" name="username"><br>
 			비밀번호 : <input type="password" name="userPW"><br>
 			이름 : <input type="text" name="name"><br>
