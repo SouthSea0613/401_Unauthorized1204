@@ -1,13 +1,15 @@
 package dto;
 
-// bean : Dto , Entity , Vo
 
+
+
+//bean : Dto, Entity, Vo
 public class Member {
 	private String username;
 	private String userpw;
-	private String name;
+	private String irum;
 	private String gender;
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -20,11 +22,13 @@ public class Member {
 	public void setUserpw(String userpw) {
 		this.userpw = userpw;
 	}
-	public String getName() {
-		return name;
+
+	public String getIrum() {
+		return irum;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setIrum(String irum) {
+		this.irum = irum;
+
 	}
 	public String getGender() {
 		return gender;

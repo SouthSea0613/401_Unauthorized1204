@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
 
+
 //회원관리 DB서비스!
 
 public class MemberDao {
@@ -56,4 +57,5 @@ public class MemberDao {
 			return false;
 		}
 	}
+
 }
