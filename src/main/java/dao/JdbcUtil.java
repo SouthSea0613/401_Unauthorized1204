@@ -23,7 +23,7 @@ public class JdbcUtil {
 	
 	public static Connection getConnect() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String id = "icia2";
+		String id = "icia";
 		String pw = "1111";
 
 		try {
