@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-은경이 지은이 
-
+<h1>main.jsp</h1>
 </body>
 </html>
