@@ -17,19 +17,21 @@ public class MemberController extends HttpServlet {
     	String cmd = req.getServletPath();
     	System.out.println("cmd="+cmd);
     	
+    	//회원관리 서비스 클래스
+    	MemberService mSer = new MemberService(req, resp);
+    	
     	
     	String path = null;
     	switch(cmd) {
     	
     	case "/joinfrm":
-    		//회원가입 창 열기
-    		path="joinfrm.jsp";
+    		//회원가입 창 열기전에 인증확인
+    		path = "joinfrm.jsp";
     		break;
     		
     	case "/join":
     		//DB에 회원가입 하기
-    		MemberService mSer = new MemberService(req, resp);  //회원관리 서비스 클래스
-    		path=mSer.join(); //회원가입 성공: loginfrm.jsp , 실패: joinfrm.jsp
+    		path = mSer.join(); //회원가입 성공: loginfrm.jsp , 실패: joinfrm.jsp
     		break;
     	}
     	
