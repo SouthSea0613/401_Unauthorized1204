@@ -31,6 +31,8 @@ public class MemberDao {
 			stmt.setString(2, member.getUserpw());
 			stmt.setString(3, member.getIrum());
 			stmt.setString(4, member.getGender());
+			
+			
 			int result = stmt.executeUpdate();// insert, update, delete
 			if (result > 0) {
 				System.out.println("join Dao 성공");

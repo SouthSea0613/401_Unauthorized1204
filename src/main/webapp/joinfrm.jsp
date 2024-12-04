@@ -16,7 +16,7 @@
 			<input type="radio" name="gender" value="여자" checked> 여자
 			<button>회원가입</button>
 			<button type="reset">취소</button>
+			</form>
 
-</form>
 </body>
 </html>

@@ -29,7 +29,7 @@ public class MemberController extends HttpServlet {
 			break;
 		case "/join":
 			// db에 회원가입하기
-			mSer.join(); // 회원가입 성공 : loginfrm.jsp, 실패 : joinfrm.jsp
+			path = mSer.join(); // 회원가입 성공 : loginfrm.jsp, 실패 : joinfrm.jsp
 			break;
 		case "/loginfrm":
 			path = "loginfrm.jsp";
