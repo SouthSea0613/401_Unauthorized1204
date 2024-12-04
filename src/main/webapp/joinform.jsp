@@ -15,7 +15,7 @@
 			아이디 : <input type="text" name="username"><br>
 			비밀번호 : <input type="password" name="userPW"><br>
 			이름 : <input type="text" name="name"><br>
-			성별 : <input type="radio" name="gender" value="male">남자<input type="radio" name="gender" value="female">여자<br>
+			성별 : <input type="radio" name="gender" value="남자">남자<input type="radio" name="gender" value="여자">여자<br>
 			<button>회원가입</button>
 			<button type="reset">취소</button>
 		</form>

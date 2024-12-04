@@ -27,6 +27,7 @@ public class MemberService {
 		
 		// 회원관리 DB로직
 		MemberDao memberDao = new MemberDao();
+		memberDao.connect();
 		boolean result = memberDao.join(member);
 		if(result) {
 			return "loginform.jsp";

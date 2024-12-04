@@ -13,4 +13,20 @@ public class Member {
 		this.name = name;
 		this.gender = gender;
 	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public String getUserPW() {
+		return userPW;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
 }

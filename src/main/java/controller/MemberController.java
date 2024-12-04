@@ -16,6 +16,8 @@ public class MemberController extends HttpServlet {
        
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
 		String cmd = req.getServletPath();
 		System.out.println(cmd);
 		
@@ -32,9 +34,11 @@ public class MemberController extends HttpServlet {
 			path = memberService.join();
 			break;
 		case "loginform":
+			// 로그인 창열기
 			path = "loginform.jsp";
 			break;
 		case "/login":
+			// db에 아이디 비밀번호 비교	
 			path = memberService.login();
 			break;
 		}
