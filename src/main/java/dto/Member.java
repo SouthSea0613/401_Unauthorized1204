@@ -7,7 +7,7 @@ package dto;
 public class Member {
 	private String username;
 	private String userpw;
-	private String irum;
+	private String name;
 	private String gender;
 
 	public String getUsername() {
@@ -23,11 +23,11 @@ public class Member {
 		this.userpw = userpw;
 	}
 
-	public String getIrum() {
-		return irum;
+	public String getname() {
+		return name;
 	}
-	public void setIrum(String irum) {
-		this.irum = irum;
+	public void setIrum(String name) {
+		this.name = name;
 
 	}
 	public String getGender() {
