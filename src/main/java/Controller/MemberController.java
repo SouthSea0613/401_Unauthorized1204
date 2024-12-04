@@ -19,7 +19,9 @@ public class MemberController extends HttpServlet {
   @Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cmd = req.getServletPath();
+		req.setCharacterEncoding("utf-8");
 		System.out.println("cmd=" + cmd);
+		MemberService mSer = new MemberService(req,resp);
 		String path=null;
 		switch(cmd) {
 		case "/joinfrm":
@@ -27,11 +29,19 @@ public class MemberController extends HttpServlet {
 			path="joinfrm.jsp";
 			break;
 		case "/join":
-			MemberService mSer = new MemberService();
+			
 			path=mSer.join(); //회원가입성공 : loginfrm.jsp, 실패 : joinfrm.jsp
 			//db에 회원가입하기
 			break;
+		case "/loginfrm":
+			MemberService m = new MemberService(req,resp);
+			path="loginfrm.jsp";
+			break;
+			case "/login":
+				path=mSer.login();
+				break;
 		}
+		
 		 
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
