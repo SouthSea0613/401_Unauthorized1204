@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dto.Member;
 
 //회원관리 DB서비스!
@@ -13,11 +15,16 @@ public class MemberDao {
 	Connection con;
 	PreparedStatement pstmt;
 	ResultSet rs;
-		
+	HttpServletRequest req;
+	
 	public void connect() {
 		con = JdbcUtil.getConnect();
 	}
 
+	public void setRequest(HttpServletRequest req) {
+		this.req = req;
+	}
+	
 	public void close() {
 		JdbcUtil.close(rs, pstmt, con);
 	}
@@ -31,7 +38,7 @@ public class MemberDao {
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getGender());
 			pstmt.executeUpdate();  // 기억나지? 이건 insert, update, delete 할 때 쓰는거야
-
+			return true;
 			// 회원가입 성공 여부를 콘솔에 찍어보고 싶다면~
 //			int result = pstmt.executeUpdate();
 //			if(result > 0) {
@@ -44,7 +51,7 @@ public class MemberDao {
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 }
