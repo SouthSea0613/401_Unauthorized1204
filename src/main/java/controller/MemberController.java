@@ -9,37 +9,43 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.MemberService;
 
-// "/" default servlet 정적리소스 사용하기 위함.
-@WebServlet({ "/main", "/joinfrm", "/join", "/loginfrm", "/login", "/logout" })
+
+// "/" - 이건 쓰지마! 이유는 default servlet 정적리소스(이미 작업이 된 결과물)를 사용하고 있음.
+@WebServlet({ "/main", "/joinform", "/join", "/loginform", "/login", "/logout" })
+
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
-		String cmd = req.getServletPath();
-		System.out.println("cmd=" + cmd);
-		String path = null;
 
-		MemberService mSer = new MemberService(req, resp);
+		req.setCharacterEncoding("UTF-8"); // 파라미터가 영어가 아닌 다른 언어로 들어올 때 깨지지 말라고 다국어처리^_^
+		String cmd = req.getServletPath();
+		System.out.println("cmd: " + cmd);
+
+		MemberService memberservice = new MemberService(req, resp); // 서블릿은 필드로 올리지말자!
+		String path = "null";
 		switch (cmd) {
-		case "/joinfrm":
-			// 회원가입 창열기전에 인증확인
-			path = "joinfrm.jsp";
+		case "/joinform":
+			// 회원가입 창을 열자
+			path = "joinform.jsp";
 			break;
 		case "/join":
-			// db에 회원가입하기
-			path = mSer.join(); // 회원가입 성공 : loginfrm.jsp, 실패 : joinfrm.jsp
+			// 회원가입을 하자(DB)
+			path = memberservice.join(); // 회원가입 성공시 loginform.jsp , 실패시 joinform.jsp
 			break;
-		case "/loginfrm":
-			path = "loginfrm.jsp";
+		case "/loginform" :
+			path = "loginform.jsp";
 			break;
 		case "/login":
-			path = mSer.login();
+			// 로그인을 하자
+			path = memberservice.login();
 			break;
-
+		case "/logout":
+			// 로그아웃을 하자
+			path = "logout.jsp";
+			break;
 		}
-
 		// 포워딩
 		req.getRequestDispatcher(path).forward(req, resp);
 	}

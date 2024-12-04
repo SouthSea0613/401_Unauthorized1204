@@ -9,50 +9,53 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
 
-//회원관리 db 서비스 
+
+//회원관리 DB서비스!
+
 public class MemberDao {
 	Connection con;
-	PreparedStatement stmt;
+	PreparedStatement pstmt;
 	ResultSet rs;
 	HttpServletRequest req;
-
+	
 	public void connect() {
-		con = JdbcUtil.getConnection();
-
+		con = JdbcUtil.getConnect();
 	}
 
-	public void close() {
-		JdbcUtil.close(rs, stmt, con);
-
-	}
 	public void setRequest(HttpServletRequest req) {
-		this.req=req;
+		this.req = req;
+	}
+	
+	public void close() {
+		JdbcUtil.close(rs, pstmt, con);
 	}
 
 	public boolean join(Member member) {
-		String sql = "insert into member values (?,?,?,?)";
+		String sql = "INSERT INTO MEMBER(USERNAME,USERPW,NAME,GENDER) VALUES (?,?,?,?)";
 		try {
-			stmt = con.prepareStatement(sql); // 파싱
-			stmt.setString(1, member.getUsername());
-			stmt.setString(2, member.getUserpw());
-			stmt.setString(3, member.getIrum());
-			stmt.setString(4, member.getGender());
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getUsername());
+			pstmt.setString(2, member.getUserpw());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getGender());
+			pstmt.executeUpdate();  // 기억나지? 이건 insert, update, delete 할 때 쓰는거야
 			
-			req.setAttribute("name", member.getIrum());
-			
-			int result = stmt.executeUpdate();// insert, update, delete
-			if (result > 0) {
-				System.out.println("join Dao 성공");
-				return true;
-			} else {
-				System.out.println("join dao 실패");
-				return false;
-			}
+			req.setAttribute("name", member.getName());
+			return true;
+			// 회원가입 성공 여부를 콘솔에 찍어보고 싶다면~
+//			int result = pstmt.executeUpdate();
+//			if(result > 0) {
+//				System.out.println("오예! 회원가입 성공");
+//				return true;		
+//			} else {
+//				System.out.println("회원가입 실패야");
+//				return false;
+//			}
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return true;
-		
 	}
 
 }
