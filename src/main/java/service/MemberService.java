@@ -31,6 +31,8 @@ public class MemberService {
 		//회원관리 DB로직
 		MemberDao mDao=new MemberDao();
 		mDao.connect();
+		mDao.setRequest(req);
+		
 		boolean result = mDao.join(member);
 		if(result) {
 			return "loginfrm.jsp";

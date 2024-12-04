@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dto.Member;
 
 //회원관리 DB 서비스
@@ -12,9 +14,17 @@ public class MemberDao {
 	Connection con;
 	PreparedStatement stmt;
 	ResultSet rs;
+	HttpServletRequest req;
+	
 	public void connect() {
 		con =JdbcUtill.connect();
+		
 	}
+	
+	public void setRequest(HttpServletRequest req) {
+		this.req = req;
+	}
+	
 	public void close() {
 		JdbcUtill.close(rs);
 		JdbcUtill.close(con);
@@ -32,6 +42,7 @@ public class MemberDao {
 			if(result>0) {
 				System.out.println("join Dao 성공");
 				JdbcUtill.commit(con);
+				req.setAttribute("name", member.getIrum());
 				return true;
 			}else {
 				System.out.println("join Dao 실패");

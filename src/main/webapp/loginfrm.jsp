@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>loginfrm.jsp</h1>
+<h1>${name} 님 환영한다 ㅋ</h1>
 </body>
 </html>
