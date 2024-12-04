@@ -30,11 +30,11 @@ public class MemberService {
 		member.setUserpw(userpw);
 		member.setIrum(irum);
 		member.setGender(gender);
-		
 		//회원관리  DB 로직
 		MemberDao mDao=new MemberDao();
 		mDao.connect();
 		boolean result = mDao.join(member);
+		mDao.setRequest(req);
 		mDao.close();
 		if(result) {
 			return "loginfrm.jsp";

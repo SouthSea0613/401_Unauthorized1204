@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>loginfrm - 로그인 양식</h1>
- ${irum} 님 환영합니다.
+ ${name} 님 환영합니다.
 
 </body>
 </html>
