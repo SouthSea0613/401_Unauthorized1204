@@ -3,7 +3,6 @@ package service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.JdbcUtill;
 import dao.MemberDao;
 import dto.Member;
 
@@ -28,6 +27,7 @@ public class MemberService {
 		// 회원관리 DB로직
 		MemberDao memberDao = new MemberDao();
 		memberDao.connect();
+		memberDao.setRequest(req);
 		boolean result = memberDao.join(member);
 		if(result) {
 			return "loginform.jsp";

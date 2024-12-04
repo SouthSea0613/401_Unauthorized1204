@@ -5,15 +5,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dto.Member;
 
 public class MemberDao {
 	Connection connection;
 	PreparedStatement preparedStatement;
 	ResultSet resultSet;
+	HttpServletRequest req;
 	
 	public void connect() {
 		connection = JdbcUtill.connect();
+	}
+	
+	public void setRequest(HttpServletRequest req) {
+		this.req = req;
 	}
 	
 	public void close() {
@@ -35,6 +42,7 @@ public class MemberDao {
 			if (result != 0) {
 				System.out.printf("join 성공");
 				JdbcUtill.commit(connection);
+				req.setAttribute("name", member.getName());
 				return true;
 			}
 			else {
@@ -43,7 +51,7 @@ public class MemberDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 }
