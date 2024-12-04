@@ -38,6 +38,8 @@ public class MemberDao {
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getGender());
 			pstmt.executeUpdate();  // 기억나지? 이건 insert, update, delete 할 때 쓰는거야
+			
+			req.setAttribute("name", member.getName());
 			return true;
 			// 회원가입 성공 여부를 콘솔에 찍어보고 싶다면~
 //			int result = pstmt.executeUpdate();

@@ -33,6 +33,7 @@ public class MemberService {
 		// 회원관리 DB로직이야!
 		MemberDao mDao = new MemberDao();
 		mDao.connect();
+		mDao.setRequest(req);
 		boolean result = mDao.join(member);  // boolean으로 둔 것은 결과가 참이냐 거짓이냐로 따지기 좋으니까
 		mDao.close();
 		if(result) {
