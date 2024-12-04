@@ -1,17 +1,27 @@
 package dto;
-//Dto, Entity, bean, Vo
+
+
+//Dto, Entity, Bean
 public class Member {
 	private String username;
 	private String userpw;
-	private String irum;
-	private String gender;  
+	private String name;
+	private String gender;
 	
-	
-	public String getUsername() {
-		return username;
+	public Member(String username, String userpw, String name, String gender) {
+		this.username = username;
+		this.userpw = userpw;
+		this.name = name;
+		this.gender = gender;
 	}
+	
+
+
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public void getUsername(){
+	 	return username;
 	}
 	public String getUserpw() {
 		return userpw;
@@ -32,4 +42,5 @@ public class Member {
 		this.gender = gender;
 	}
 	
+
 }

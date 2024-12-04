@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.MemberService;
 
+<<<<<<< HEAD
 
 @WebServlet({"/main", "/joinfrm", "/join", "/loginfrm", "/login", "/logout"})  // "/" 로 main은 못 감 _ 기본적으로 서블릿(default servlet(정적))이 쓰고있음
 public class MemberController extends HttpServlet {
@@ -49,4 +50,5 @@ public class MemberController extends HttpServlet {
     	//포워딩
     	req.getRequestDispatcher(path).forward(req, resp);
     }
+
 }

@@ -18,7 +18,7 @@ public class MemberDao {
 	
 	public void connect() {
 		con =JdbcUtill.connect();
-		
+
 	}
 	
 	public void setRequest(HttpServletRequest req) {
@@ -46,11 +46,14 @@ public class MemberDao {
 				return true;
 			}else {
 				System.out.println("join Dao 실패");
+
 				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+
 		}
 		return false;
+
 	}
 }
