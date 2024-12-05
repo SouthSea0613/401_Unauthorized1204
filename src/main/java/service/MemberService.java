@@ -91,9 +91,9 @@ public class MemberService {
 
 	private String makeLogoutHtml() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<div>");
-		sb.append("<a href='./logout'>로그아웃</a>");
-		sb.append("</div>");
+		sb.append("<form action='./loginfrm' method='post'>");
+		sb.append("<button>로그아웃</button>");
+		sb.append("</form>");
 		return sb.toString();
 	}
 }

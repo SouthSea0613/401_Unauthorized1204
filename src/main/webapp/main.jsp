@@ -11,7 +11,6 @@
 <h1>main.jsp</h1>
 ${logout} <br>
 <h1>로그인한 회원정보</h1>
-
 아이디 : ${member.username} <br>
 비밀번호 : ${member.userpw } <br>
 이름 : ${member.irum} <br>
