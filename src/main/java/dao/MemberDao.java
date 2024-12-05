@@ -66,9 +66,7 @@ public class MemberDao {
 					//로그인 성공
 					return true;
 				}
-				return false;
-			}else {
-				return false;
+					
 			}
 		} catch (SQLException e) {
 			System.out.println("login dao 예외발생");
