@@ -2,6 +2,7 @@ package service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.JdbcUtil;
 import dao.MemberDao;
@@ -43,6 +44,22 @@ public class MemberService {
 		}
 	}
 	public String login() {
-		return null;
-	}
+	     String username = req.getParameter("username");
+	      String userpw = req.getParameter("userpw");
+	      MemberDao mDao = new MemberDao();
+	      mDao.connect();
+	      boolean result = mDao.login(username,userpw);
+	      if(result) {
+	    	  //서버에서 세션객체 가져오기
+	      HttpSession session = req.getSession();
+	      session.setAttribute("userName", username);
+	      return "./main.jsp";
+	      } else {
+	         req.setAttribute("msg", "로그인 실패");
+	         return "./loginfrm.jsp";
+	      }
+	      mDao.close();
+//	      System.out.println(username+","+userpw);
+	      return null;
+	   }
 }
