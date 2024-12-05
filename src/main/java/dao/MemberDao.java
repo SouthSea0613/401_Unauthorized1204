@@ -55,7 +55,7 @@ public class MemberDao {
 		return false;
 	}
 
-	public boolean login(HashMap<String, String> map) {
+	public Member login(HashMap<String, String> map) {
 		String sql = "select * from member where username=?";
 		try {
 			stmt=con.prepareStatement(sql);
@@ -64,15 +64,19 @@ public class MemberDao {
 			if(rs.next()) { //아이디가 존재하면
 				if(rs.getString("userpw").equals(map.get("userpw"))) {
 					//로그인 성공
-					return true;
-				}
-					
+					Member mb = new Member();
+					mb.setUsername(rs.getString("username"));
+					mb.setUserpw(rs.getString("userpw"));
+					mb.setIrum(rs.getString("irum"));
+					mb.setGender(rs.getString("gender"));
+					return mb;
+				}		
 			}
 		} catch (SQLException e) {
 			System.out.println("login dao 예외발생");
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 	
 

@@ -64,14 +64,16 @@ public class MemberService {
 
 		mDao.connect();
 		//boolean result = mDao.login(map);
-		boolean result = mDao.login(map);
+		Member member = mDao.login(map);
 		mDao.close();
 
 		Forward fw = new Forward();
-		if (result) {
+		if (member!=null) {
 			// 서버에서 세션객체 가져오기
 			HttpSession session = req.getSession();
-			session.setAttribute("username", username);
+			//인증했다는 마깅, 회원정보 출력
+			session.setAttribute("member", member);
+			session.setAttribute("logout", makeLogoutHtml());
 			fw.setPath("main.jsp");
 			fw.setRedirect(true);
 			// path="./main.jsp";
@@ -85,5 +87,13 @@ public class MemberService {
 		}
 //	      System.out.println(username+","+userpw);
 		return fw;
+	}
+
+	private String makeLogoutHtml() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<div>");
+		sb.append("<a href='./logout'>로그아웃</a>");
+		sb.append("</div>");
+		return sb.toString();
 	}
 }

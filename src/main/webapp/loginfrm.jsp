@@ -17,7 +17,7 @@ if('${msg}'!=''){
       아이디 : <input type="text" name="username"><br> 
       비번 : <input type="password" name="userpw"><br>
       <button>로그인</button>
-      <a href="./joinform.jsp">회원가입</a>
+      <a href="./joinfrm.jsp">회원가입</a>
    </form>
 
 

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.Forward;
 import service.MemberService;
@@ -49,7 +50,15 @@ public class MemberController extends HttpServlet {
 			fw = mSer.login();
 			//path = mSer.login();
 			break;
-		}
+		case "/logout":
+			HttpSession session = req.getSession();
+			//session.removeAttribute("logout");
+			//session.removeAttribute("member");
+			session.invalidate(); //세션무효화
+			fw = new Forward();
+			fw.setPath("./loginfrm.jsp");
+			fw.setRedirect(true);
+		} 
 		if(fw!=null) {
 			if(fw.isRedirect()) {
 				resp.sendRedirect(fw.getPath());
