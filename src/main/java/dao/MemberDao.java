@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -51,8 +52,30 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return true;
-		
+		return false;
 	}
+
+	public boolean login(HashMap<String, String> map) {
+		String sql = "select * from member where username=?";
+		try {
+			stmt=con.prepareStatement(sql);
+			stmt.setString(1, map.get("username"));
+			rs=stmt.executeQuery();
+			if(rs.next()) { //아이디가 존재하면
+				if(rs.getString("userpw").equals(map.get("userpw"))) {
+					//로그인 성공
+					return true;
+				}
+				return false;
+			}else {
+				return false;
+			}
+		} catch (SQLException e) {
+			System.out.println("login dao 예외발생");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 
 }

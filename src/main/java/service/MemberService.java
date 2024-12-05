@@ -1,5 +1,7 @@
 package service;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,18 +50,20 @@ public class MemberService {
 	      String userpw = req.getParameter("userpw");
 	      MemberDao mDao = new MemberDao();
 	      mDao.connect();
-	      boolean result = mDao.login(username,userpw);
+	      HashMap<String,String> map = new HashMap<>();
+	      boolean result = mDao.login(map); 
+	      String path=null;
 	      if(result) {
 	    	  //서버에서 세션객체 가져오기
 	      HttpSession session = req.getSession();
 	      session.setAttribute("userName", username);
-	      return "./main.jsp";
+	      path="./main.jsp";
 	      } else {
 	         req.setAttribute("msg", "로그인 실패");
-	         return "./loginfrm.jsp";
+	       path="./loginfrm.jsp";
 	      }
 	      mDao.close();
 //	      System.out.println(username+","+userpw);
-	      return null;
+	      return path;
 	   }
 }
